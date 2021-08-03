@@ -2,30 +2,27 @@
 
 namespace Oberon\Domain\Entities;
 
-use DateTime;
 use Oberon\Domain\Entities\Buyer;
+use Oberon\Domain\Entities\Fields\CreatedAt;
+use Oberon\Domain\Entities\Fields\Description;
+use Oberon\Domain\Entities\Fields\Name;
+use Oberon\Domain\Entities\Fields\UpdatedAt;
 
 class Product
 {
     private bool $active;
-    private String $name;
-    private String $description;
+    private Name $name;
+    private Description $description;
     private Buyer $buyer;
-    private DateTime $createdAt;
-    private DateTime $updatedAt;
+    private CreatedAt $createdAt;
+    private UpdatedAt $updatedAt;
 
     public function __construct(array $attributes = [])
     {
-        $this->validate($attributes);
-        $this->buyer = $attributes['buyer'];
-        $this->name = $attributes['name'];
-        $this->description = $attributes['description'];
-        $this->active = $attributes['active'];
-        $this->createdAt = $attributes['createdAt'];
-        $this->updatedAt = $attributes['updatedAt'];
+        $this->bind($attributes);        
     }  
 
-    protected function validate($attributes)
+    protected function bind($attributes)
     {
         if(!is_array($attributes))
             throw new \Exception("The variable attributes must be an array", 1);
@@ -33,10 +30,12 @@ class Product
         if(empty($attributes))
             throw new \Exception("The variable attributes cannot be empty", 1);
 
-        foreach ($attributes as $key => $value) {
-            if(empty($value))
-                throw new \Exception("The $key cannot be empty", 1);
-        }
+        $this->name = new Name($attributes['name']);
+        $this->description = new Description($attributes['description']);
+        $this->createdAt = new CreatedAt($attributes['createdAt']);
+        $this->updatedAt = new UpdatedAt($attributes['updatedAt']);
+        $this->buyer = $attributes['buyer'];
+        $this->active = $attributes['active'];
 
         return true;      
     }
@@ -44,12 +43,12 @@ class Product
     public function getData()
     {
         return [
-            'buyer' => $this->buyer,
-            'name' => $this->name,
-            'description' => $this->description,
+            'name' => $this->name->getValue(),
+            'description' => $this->description->getValue(),
+            'createdAt' => $this->createdAt->getValue(),
+            'updatedAt' => $this->updatedAt->getValue(),
             'active' => $this->active,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'buyer' => $this->buyer,
         ];
     }
 }
