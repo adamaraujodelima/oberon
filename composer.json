@@ -1,0 +1,23 @@
+{
+    "name": "adamsolutions/oberon",
+    "description": "Platform for compare quotation products",
+    "type": "project",
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Oberon\\": "src/",
+            "Tests\\": "tests"
+        }
+    },
+    "authors": [
+        {
+            "name": "Adam A. de Lima",
+            "email": "adam.araujo.lima@gmail.com"
+        }
+    ]
+}
