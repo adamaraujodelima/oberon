@@ -34,8 +34,8 @@ class Product
         $this->description = new Description($attributes['description']);
         $this->createdAt = new CreatedAt($attributes['createdAt']);
         $this->updatedAt = new UpdatedAt($attributes['updatedAt']);
+        $this->active = boolval($attributes['active']);
         $this->buyer = $attributes['buyer'];
-        $this->active = $attributes['active'];
 
         return true;      
     }

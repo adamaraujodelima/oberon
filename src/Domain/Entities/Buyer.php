@@ -2,13 +2,18 @@
 
 namespace Oberon\Domain\Entities;
 
+use Oberon\Domain\Entities\Fields\CreatedAt;
 use Oberon\Domain\Entities\Fields\Document;
 use Oberon\Domain\Entities\Fields\Name;
+use Oberon\Domain\Entities\Fields\UpdatedAt;
 
 class Buyer {
     
     private Name $name;
     private Document $document;
+    private CreatedAt $createdAt;
+    private UpdatedAt $updatedAt;
+    private bool $active;
 
     public function __construct(Array $attributes = [])
     {
@@ -25,6 +30,9 @@ class Buyer {
 
         $this->name = new Name($attributes['name']);
         $this->document = new Document($attributes['document']);
+        $this->createdAt = new CreatedAt($attributes['createdAt']);
+        $this->updatedAt = new UpdatedAt($attributes['updatedAt']);
+        $this->active = boolval($attributes['active']);
     }
 
     public function getDate()
@@ -32,6 +40,9 @@ class Buyer {
         return [
             'name' => $this->name->getValue(),
             'document' => $this->document->getValue(),
+            'active' => $this->active,
+            'createdAt' => $this->createdAt->getValue(),
+            'updatedAt' => $this->updatedAt->getValue(),
         ];
     }
 }
