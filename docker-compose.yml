@@ -14,17 +14,27 @@ services:
     redis:
         image: 'redis:alpine'
 
-    # postgres:
-    #     image: 'postgres:11.1-alpine'
-    #     working_dir: /application
-    #     volumes:
-    #         - '.:/application'
-    #     environment:
-    #         - POSTGRES_USER=admin
-    #         - POSTGRES_PASSWORD=admin
-    #         - POSTGRES_DB=oberon
-    #     ports:
-    #         - '8002:5432'
+    postgres:
+        image: 'postgres:13.3-alpine'
+        container_name: postgres-database
+        working_dir: /application
+        volumes:
+            - '.:/application'
+        environment:
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=admin
+            - POSTGRES_DB=oberon
+        ports:
+            - '8002:5432'
+    pgadmin:
+        image: dpage/pgadmin4
+        environment:
+            - PGADMIN_DEFAULT_EMAIL=adam.araujo.lima@gmail.com
+            - PGADMIN_DEFAULT_PASSWORD=PgAdmin2021!
+        ports:
+            - "5682:80"
+        depends_on:
+            - postgres
 
     # elasticsearch:
     #     image: 'elasticsearch:6.5.4'

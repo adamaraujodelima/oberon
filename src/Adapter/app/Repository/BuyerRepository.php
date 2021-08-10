@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Models\Buyer;
 use Oberon\Ports\RepositoryInterface;
 
 class BuyerRepository implements RepositoryInterface
@@ -13,7 +14,10 @@ class BuyerRepository implements RepositoryInterface
 
     public function create(Array $params): array
     {
-        return $params;
+        $model = new Buyer();
+        $model->name = $params['name'];
+        $model->document = $params['document'];
+        $model->save();
     }
 
     public function update(Array $params): array
