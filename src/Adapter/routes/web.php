@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Buyer\CreateController;
+use App\Http\Controllers\Buyer\PaginationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/buyer/create', [CreateController::class, 'execute']);
+Route::get('/buyer/pagination', [PaginationController::class, 'execute']);
