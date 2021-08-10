@@ -9,7 +9,7 @@ class BuyerRepository implements RepositoryInterface
 {
     public function pagination(Array $params): array
     {
-        return $params;
+        return Buyer::paginate(15)->toArray();
     }
 
     public function create(Array $params): array
@@ -18,6 +18,7 @@ class BuyerRepository implements RepositoryInterface
         $model->name = $params['name'];
         $model->document = $params['document'];
         $model->save();
+        return $model;
     }
 
     public function update(Array $params): array
