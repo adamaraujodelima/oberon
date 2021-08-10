@@ -2,6 +2,7 @@
 
 namespace Oberon\Domain\Entities;
 
+use DateTime;
 use Oberon\Domain\Entities\Fields\CreatedAt;
 use Oberon\Domain\Entities\Fields\Document;
 use Oberon\Domain\Entities\Fields\Name;
@@ -28,14 +29,14 @@ class Buyer {
         if (empty($attributes))
             throw new \Exception("The variable attributes cannot be empty", 1);
 
-        $this->name = new Name($attributes['name']);
-        $this->document = new Document($attributes['document']);
-        $this->createdAt = new CreatedAt($attributes['createdAt']);
-        $this->updatedAt = new UpdatedAt($attributes['updatedAt']);
-        $this->active = boolval($attributes['active']);
+        $this->name = new Name($attributes['name'] ?? null);
+        $this->document = new Document($attributes['document'] ?? null);
+        $this->createdAt = new CreatedAt($attributes['createdAt'] ?? new DateTime());
+        $this->updatedAt = new UpdatedAt($attributes['updatedAt'] ?? new DateTime());
+        $this->active = boolval($attributes['active'] ?? false);
     }
 
-    public function getDate()
+    public function getData()
     {
         return [
             'name' => $this->name->getValue(),

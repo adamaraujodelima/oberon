@@ -19,6 +19,9 @@ class CreateController extends BaseController
     public function execute()
     {
         $userCase = new BuyerCreateUserCase($this->repository);
-        dd($userCase->execute(['Create']));
+        dd($userCase->execute([
+            'name' => 'Adam Araujo de Lima',
+            'document' => '41545645646546',
+        ]));
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Oberon\Domain\Entities;
 
+use DateTime;
+use Illuminate\Support\Facades\Date;
 use Oberon\Domain\Entities\Buyer;
 use Oberon\Domain\Entities\Fields\CreatedAt;
 use Oberon\Domain\Entities\Fields\Description;
@@ -30,11 +32,11 @@ class Product
         if(empty($attributes))
             throw new \Exception("The variable attributes cannot be empty", 1);
 
-        $this->name = new Name($attributes['name']);
-        $this->description = new Description($attributes['description']);
-        $this->createdAt = new CreatedAt($attributes['createdAt']);
-        $this->updatedAt = new UpdatedAt($attributes['updatedAt']);
-        $this->active = boolval($attributes['active']);
+        $this->name = new Name($attributes['name'] ?? null);
+        $this->description = new Description($attributes['description'] ?? null);
+        $this->createdAt = new CreatedAt($attributes['createdAt'] ?? new DateTime());
+        $this->updatedAt = new UpdatedAt($attributes['updatedAt'] ?? new DateTime());
+        $this->active = boolval($attributes['active'] ?? false);
         $this->buyer = $attributes['buyer'];
 
         return true;      
