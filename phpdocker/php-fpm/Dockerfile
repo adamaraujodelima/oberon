@@ -4,8 +4,7 @@ WORKDIR "/application"
 RUN apt-get update; \
     apt-get -y --no-install-recommends install \
         git \ 
-        php8.0-gd \ 
-        php8.0-gmagick \ 
+        php8.0-gd \
         php8.0-grpc \ 
         php8.0-http \ 
         php8.0-imagick \ 

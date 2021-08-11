@@ -17,6 +17,7 @@ class CreateBuyerTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('document');
+            $table->boolean('active');
             $table->timestamps();
         });
     }

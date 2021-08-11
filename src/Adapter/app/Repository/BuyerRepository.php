@@ -18,7 +18,14 @@ class BuyerRepository implements RepositoryInterface
         $model->name = $params['name'];
         $model->document = $params['document'];
         $model->save();
-        return $model;
+        return [
+            'id' => $model->id,
+            'name' => $model->name,
+            'active' => $model->active,
+            'document' => $model->document,
+            'createdAt' => $model->created_at,
+            'updatedAt' => $model->updated_at,
+        ];
     }
 
     public function update(Array $params): array

@@ -3,20 +3,24 @@
 
 namespace Oberon\Domain\UserCases\Buyer;
 
+use Exception;
 use Oberon\Domain\Entities\Buyer;
 use Oberon\Domain\Interfaces\CreateUserCaseInterface;
 use Oberon\Domain\UserCases\MainUserCase;
 
 class BuyerCreateUserCase extends MainUserCase implements CreateUserCaseInterface{
 
-    public function execute(Array $params)
+    public function execute(Array $params): array
     {
-        $entity = new Buyer($params);
-        return $this->repository->create($entity->getData());
+        $buyer = new Buyer($params);
+        $response = $this->repository->create($buyer->getData());
+        return $this->validate($response, $buyer);
     }
 
-    public function validate(Array $params)
+    public function validate($data,$buyer): array
     {
-        return $params;
+        if(array_keys($buyer->getData()) !== array_keys($data))
+            throw new Exception("Response from repository is invalid!", 1);
+        return $buyer->getData();            
     }
 }
