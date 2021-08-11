@@ -19,8 +19,9 @@ class BuyerCreateUserCase extends MainUserCase implements CreateUserCaseInterfac
 
     public function validate($data,$buyer): array
     {
-        if(array_keys($buyer->getData()) !== array_keys($data))
+        if(array_keys($buyer->getData()) != array_keys($data))
             throw new Exception("Response from repository is invalid!", 1);
+
         return $buyer->getData();            
     }
 }

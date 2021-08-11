@@ -17,12 +17,13 @@ class BuyerRepository implements RepositoryInterface
         $model = new Buyer();
         $model->name = $params['name'];
         $model->document = $params['document'];
+        $model->active = $params['active'];
         $model->save();
         return [
             'id' => $model->id,
             'name' => $model->name,
-            'active' => $model->active,
             'document' => $model->document,
+            'active' => $model->active,
             'createdAt' => $model->created_at,
             'updatedAt' => $model->updated_at,
         ];

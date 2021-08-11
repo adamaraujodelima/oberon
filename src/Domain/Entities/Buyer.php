@@ -46,7 +46,7 @@ class Buyer {
             'id' => $this->id->getValue(),
             'name' => $this->name->getValue(),
             'document' => $this->document->getValue(),
-            'active' => $this->active,
+            'active' => $this->active->getValue(),
             'createdAt' => $this->createdAt->getValue(),
             'updatedAt' => $this->updatedAt->getValue(),
         ];
