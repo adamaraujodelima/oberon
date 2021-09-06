@@ -3,14 +3,16 @@
 namespace App\Repository;
 
 use App\Models\Buyer;
+use Oberon\Ports\Inputs\PaginationRequestInput;
 use Oberon\Ports\Outputs\PaginationRequestOutput;
 use Oberon\Ports\RepositoryInterface;
 
 class BuyerRepository implements RepositoryInterface
 {
-    public function pagination(Array $params): PaginationRequestOutput
+    public function pagination(PaginationRequestInput $request): PaginationRequestOutput
     {
-        $response = Buyer::paginate(15)->toArray();
+        $criteria = $request->getCriteria();
+        $response = Buyer::where($criteria)->paginate($request->getLimit())->toArray();
         return new PaginationRequestOutput(
             $response['current_page'],
             $response['last_page'],
