@@ -2,7 +2,9 @@
 
 namespace Oberon\Domain\Interfaces;
 
+use Oberon\Ports\Inputs\PaginationRequestInput;
+
 interface PaginationUserCaseInterface
 {
-    public function execute(array $params): array;
+    public function main(PaginationRequestInput $params): array;
 }

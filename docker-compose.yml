@@ -54,6 +54,8 @@ services:
     application:
         build: phpdocker/php-fpm
         working_dir: /application
+        depends_on: 
+            - postgres
         volumes:
             - '.:/application'
             - './phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/8.0/fpm/conf.d/99-overrides.ini'
