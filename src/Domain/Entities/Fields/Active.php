@@ -2,6 +2,8 @@
 
 namespace Oberon\Domain\Entities\Fields;
 
+use UnexpectedValueException;
+
 class Active
 {
 
@@ -14,8 +16,9 @@ class Active
 
     protected function validate($value)
     {
-        if (!is_bool($value))
-            throw new \Exception("The value of field active is not a boolean!", 1);
+        if (!is_bool($value)) {
+            throw new UnexpectedValueException("The value of field active is not a boolean!", 1);
+        }
 
         $this->value = $value;
     }

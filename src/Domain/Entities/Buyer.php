@@ -9,6 +9,7 @@ use Oberon\Domain\Entities\Fields\Document;
 use Oberon\Domain\Entities\Fields\Name;
 use Oberon\Domain\Entities\Fields\PrimaryKey;
 use Oberon\Domain\Entities\Fields\UpdatedAt;
+use UnexpectedValueException;
 
 class Buyer {
     
@@ -26,11 +27,13 @@ class Buyer {
 
     protected function bind($attributes)
     {
-        if (!is_array($attributes))
-            throw new \Exception("The variable attributes must be an array", 1);
+        if (!is_array($attributes)){
+            throw new UnexpectedValueException("The variable attributes must be an array", 1);
+        }
 
-        if (empty($attributes))
-            throw new \Exception("The variable attributes cannot be empty", 1);
+        if (empty($attributes)){
+            throw new UnexpectedValueException("The variable attributes cannot be empty", 1);
+        }
 
         $this->id = new PrimaryKey($attributes['id'] ?? 0);
         $this->name = new Name($attributes['name'] ?? null);

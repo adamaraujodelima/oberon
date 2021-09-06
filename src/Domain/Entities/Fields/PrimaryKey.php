@@ -2,6 +2,8 @@
 
 namespace Oberon\Domain\Entities\Fields;
 
+use UnexpectedValueException;
+
 class PrimaryKey
 {
 
@@ -14,8 +16,9 @@ class PrimaryKey
 
     protected function validate($value)
     {
-        if (!is_int($value))
-            throw new \Exception("The value is not integer!", 1);
+        if (!is_int($value)){
+            throw new UnexpectedValueException("The value is not integer!", 1);
+        }
 
         $this->value = $value;
     }

@@ -9,6 +9,7 @@ use Oberon\Domain\Entities\Fields\CreatedAt;
 use Oberon\Domain\Entities\Fields\Description;
 use Oberon\Domain\Entities\Fields\Name;
 use Oberon\Domain\Entities\Fields\UpdatedAt;
+use UnexpectedValueException;
 
 class Product
 {
@@ -26,11 +27,13 @@ class Product
 
     protected function bind($attributes)
     {
-        if(!is_array($attributes))
-            throw new \Exception("The variable attributes must be an array", 1);
+        if (!is_array($attributes)) {
+            throw new UnexpectedValueException("The variable attributes must be an array", 1);
+        }
             
-        if(empty($attributes))
-            throw new \Exception("The variable attributes cannot be empty", 1);
+        if (empty($attributes)) {
+            throw new UnexpectedValueException("The variable attributes cannot be empty", 1);
+        }
 
         $this->name = new Name($attributes['name'] ?? null);
         $this->description = new Description($attributes['description'] ?? null);
