@@ -10,11 +10,11 @@ use Oberon\Domain\Entities\Buyer;
 use Oberon\Domain\Interfaces\CreateUserCaseInterface;
 use Oberon\Domain\UserCases\MainUserCase;
 use Oberon\Ports\Inputs\BuyerCreateUpdateRequestInput;
-use Oberon\Ports\Inputs\BuyerRequestOutput;
+use Oberon\Ports\Outputs\BuyerRequestOutput;
 
 class BuyerCreateUserCase extends MainUserCase {
 
-    public function execute(BuyerCreateUpdateRequestInput $request): BuyerRequestOutput
+    public function create(BuyerCreateUpdateRequestInput $request): BuyerRequestOutput
     {
         $dateNow = new DateTime();
         $params = array(
@@ -26,18 +26,10 @@ class BuyerCreateUserCase extends MainUserCase {
             'updatedAt' => $dateNow,
         );
 
-        $buyer = new Buyer($params);
+        $buyerEntity = new Buyer($params);
         
-        if ($buyer->validate()) {            
+        if ($buyerEntity->validate()) {            
             return $this->repository->create($request);
         }        
-    }
-
-    public function validate($data,$buyer): array
-    {
-        if(array_keys($buyer->getData()) != array_keys($data))
-            throw new Exception("Response from repository is invalid!", 1);
-
-        return $buyer->getData();            
-    }
+    }    
 }

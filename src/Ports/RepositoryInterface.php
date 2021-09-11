@@ -3,7 +3,7 @@
 namespace Oberon\Ports;
 
 use Oberon\Ports\Inputs\BuyerCreateUpdateRequestInput;
-use Oberon\Ports\Inputs\BuyerRequestOutput;
+use Oberon\Ports\Outputs\BuyerRequestOutput;
 use Oberon\Ports\Inputs\PaginationRequestInput;
 use Oberon\Ports\Outputs\PaginationRequestOutput;
 

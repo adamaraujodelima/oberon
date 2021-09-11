@@ -7,13 +7,13 @@ use Oberon\Domain\Entities\Buyer;
 use Oberon\Domain\Interfaces\EditUserCaseInterface;
 use Oberon\Domain\UserCases\MainUserCase;
 use Oberon\Ports\Inputs\BuyerCreateUpdateRequestInput;
-use Oberon\Ports\Inputs\BuyerRequestOutput;
+use Oberon\Ports\Outputs\BuyerRequestOutput;
 use UnexpectedValueException;
 
 final class BuyerEditUserCase extends MainUserCase
 {
 
-    public function execute(BuyerCreateUpdateRequestInput $request): BuyerRequestOutput
+    public function edit(BuyerCreateUpdateRequestInput $request): BuyerRequestOutput
     {
         
         $buyer = $this->repository->find($request->getId());
@@ -35,10 +35,5 @@ final class BuyerEditUserCase extends MainUserCase
         if ($buyerEntity->validate()) {            
             return $this->repository->update($request);
         }
-    }
-
-    public function validate(array $params)
-    {
-        # code...
-    }
+    }    
 }

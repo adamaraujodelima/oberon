@@ -24,10 +24,10 @@ class CreateController extends BaseController
         $date = new DateTime();
         $userCase = new BuyerCreateUserCase($this->repository);
         $request = new BuyerCreateUpdateRequestInput(
-            $request->get('name') ?? '',
-            $request->get('document') ?? '',
+            $request->get('name') ?? 'Adam A. de Lima',
+            $request->get('document') ?? '14654564665464',
             $request->get('active') ?? false,
         );
-        dd($userCase->execute($request));
+        dd($userCase->create($request));
     }
 }

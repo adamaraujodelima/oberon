@@ -27,6 +27,6 @@ class PaginationController extends BaseController
             $request->get('page') ?? 0,
             $request->get('criteria') ?? [],
         );
-        dd($userCasePagination->main($paginationRequest));
+        dd($userCasePagination->pagination($paginationRequest));
     }
 }

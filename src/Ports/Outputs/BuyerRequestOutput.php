@@ -1,6 +1,6 @@
 <?php
 
-namespace Oberon\Ports\Inputs;
+namespace Oberon\Ports\Outputs;
 
 use DateTime;
 

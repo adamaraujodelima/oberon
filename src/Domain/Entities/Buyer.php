@@ -28,7 +28,7 @@ class Buyer {
         $this->attributes = $attributes;
     }
 
-    public function validate(): void
+    public function validate(): bool
     {
         if (!is_array($this->attributes)){
             throw new UnexpectedValueException("The variable attributes must be an array", 1);
@@ -44,6 +44,8 @@ class Buyer {
         $this->active = new Active($this->attributes['active'] ?? false);
         $this->createdAt = new CreatedAt($this->attributes['createdAt'] ?? new DateTime());
         $this->updatedAt = new UpdatedAt($this->attributes['updatedAt'] ?? new DateTime());
+
+        return true;
     }
 
     public function getData(): array

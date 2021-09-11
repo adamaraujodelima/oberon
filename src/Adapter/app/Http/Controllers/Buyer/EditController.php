@@ -19,6 +19,6 @@ class EditController extends BaseController
     public function execute()
     {
         $userCase = new BuyerEditUserCase($this->repository);
-        dd($userCase->execute(1,[]));
+        dd($userCase->edit(1,[]));
     }
 }

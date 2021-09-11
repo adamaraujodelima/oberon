@@ -11,7 +11,7 @@ class BuyerPaginationUserCase extends MainUserCase implements PaginationUserCase
 
     private array $fieldsCriteria = ['name', 'document', 'active'];
 
-    public function main(PaginationRequestInput $request): array
+    public function pagination(PaginationRequestInput $request): array
     {
         
         if ($request->getCriteria()) {

@@ -3,7 +3,8 @@
 namespace App\Repository;
 
 use App\Models\Buyer;
-use Oberon\Ports\Inputs\BuyerRequestOutput;
+use Oberon\Ports\Inputs\BuyerCreateUpdateRequestInput;
+use Oberon\Ports\Outputs\BuyerRequestOutput;
 use Oberon\Ports\Inputs\PaginationRequestInput;
 use Oberon\Ports\Outputs\PaginationRequestOutput;
 use Oberon\Ports\RepositoryInterface;
@@ -22,12 +23,12 @@ class BuyerRepository implements RepositoryInterface
         );
     }
 
-    public function create(Array $params): BuyerRequestOutput
+    public function create(BuyerCreateUpdateRequestInput $request): BuyerRequestOutput
     {
         $model = new Buyer();
-        $model->name = $params['name'];
-        $model->document = $params['document'];
-        $model->active = $params['active'];
+        $model->name = $request->getName();
+        $model->document = $request->getDocument();
+        $model->active = $request->getActive();
         $model->save();
 
         return new BuyerRequestOutput(
@@ -40,9 +41,9 @@ class BuyerRepository implements RepositoryInterface
         );
     }
 
-    public function update(Array $params): BuyerRequestOutput
+    public function update(BuyerCreateUpdateRequestInput $request): BuyerRequestOutput
     {
-        $buyer = Buyer::find($params['id']);
+        $buyer = Buyer::find($request->getId());
         return new BuyerRequestOutput(
             $buyer->id,
             $buyer->name,

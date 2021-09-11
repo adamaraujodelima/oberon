@@ -6,5 +6,5 @@ use Oberon\Ports\Inputs\PaginationRequestInput;
 
 interface PaginationUserCaseInterface
 {
-    public function main(PaginationRequestInput $params): array;
+    public function pagination(PaginationRequestInput $params): array;
 }
