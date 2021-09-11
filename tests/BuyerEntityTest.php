@@ -6,7 +6,7 @@ use DateTime;
 use Oberon\Domain\Entities\Buyer;
 use PHPUnit\Framework\TestCase;
 
-class BuyerTest extends TestCase
+final class BuyerEntityTest extends TestCase
 {
     public function testFailWithoutAttributes(): void
     {

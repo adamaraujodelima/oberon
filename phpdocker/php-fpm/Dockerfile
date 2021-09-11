@@ -10,6 +10,7 @@ RUN apt-get update; \
         php8.0-imagick \ 
         php8.0-intl \ 
         php8.0-mcrypt \ 
+        php8.0-raphf \ 
         php8.0-memcache \ 
         php8.0-memcached \ 
         php8.0-mongodb \ 

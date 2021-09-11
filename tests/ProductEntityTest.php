@@ -6,7 +6,8 @@ use DateTime;
 use Oberon\Domain\Entities\Buyer;
 use Oberon\Domain\Entities\Product;
 use PHPUnit\Framework\TestCase;
-class ProductTest extends TestCase
+
+final class ProductEntityTest extends TestCase
 {
 
     public function testSuccessAllRequiredAttributes(): void

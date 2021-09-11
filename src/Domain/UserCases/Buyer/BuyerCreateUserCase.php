@@ -1,20 +1,36 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Oberon\Domain\UserCases\Buyer;
 
+use DateTime;
 use Exception;
 use Oberon\Domain\Entities\Buyer;
 use Oberon\Domain\Interfaces\CreateUserCaseInterface;
 use Oberon\Domain\UserCases\MainUserCase;
+use Oberon\Ports\Inputs\BuyerCreateUpdateRequestInput;
+use Oberon\Ports\Inputs\BuyerRequestOutput;
 
-class BuyerCreateUserCase extends MainUserCase implements CreateUserCaseInterface{
+class BuyerCreateUserCase extends MainUserCase {
 
-    public function execute(Array $params): array
+    public function execute(BuyerCreateUpdateRequestInput $request): BuyerRequestOutput
     {
+        $dateNow = new DateTime();
+        $params = array(
+            'id' => $request->getId(),
+            'name' => $request->getName(),
+            'document' => $request->getDocument(),
+            'active' => $request->getActive(),
+            'createdAt' => $dateNow,
+            'updatedAt' => $dateNow,
+        );
+
         $buyer = new Buyer($params);
-        $response = $this->repository->create($buyer->getData());
-        return $this->validate($response, $buyer);
+        
+        if ($buyer->validate()) {            
+            return $this->repository->create($request);
+        }        
     }
 
     public function validate($data,$buyer): array
