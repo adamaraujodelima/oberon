@@ -16,7 +16,7 @@ class PrimaryKey
 
     protected function validate($value)
     {
-        if (!is_int($value)){
+        if (!is_int($value)) {
             throw new UnexpectedValueException("The value is not integer!", 1);
         }
 

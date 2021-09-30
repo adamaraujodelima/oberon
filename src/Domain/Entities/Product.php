@@ -22,8 +22,8 @@ class Product
 
     public function __construct(array $attributes = [])
     {
-        $this->bind($attributes);        
-    }  
+        $this->bind($attributes);
+    }
 
     protected function bind($attributes)
     {
@@ -42,7 +42,7 @@ class Product
         $this->active = boolval($attributes['active'] ?? false);
         $this->buyer = $attributes['buyer'];
 
-        return true;      
+        return true;
     }
 
     public function getData()

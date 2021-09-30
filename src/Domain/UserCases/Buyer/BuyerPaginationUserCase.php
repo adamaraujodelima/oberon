@@ -6,6 +6,7 @@ use Exception;
 use Oberon\Domain\Interfaces\PaginationUserCaseInterface;
 use Oberon\Domain\UserCases\MainUserCase;
 use Oberon\Ports\Inputs\PaginationRequestInput;
+
 class BuyerPaginationUserCase extends MainUserCase implements PaginationUserCaseInterface
 {
 
@@ -21,7 +22,7 @@ class BuyerPaginationUserCase extends MainUserCase implements PaginationUserCase
             }
         }
 
-        $response = $this->repository->pagination($request);        
+        $response = $this->repository->pagination($request);
 
         return $response->getData();
     }

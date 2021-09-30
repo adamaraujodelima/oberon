@@ -12,7 +12,8 @@ use Oberon\Domain\UserCases\MainUserCase;
 use Oberon\Ports\Inputs\BuyerCreateUpdateRequestInput;
 use Oberon\Ports\Outputs\BuyerRequestOutput;
 
-class BuyerCreateUserCase extends MainUserCase {
+final class BuyerCreateUserCase extends MainUserCase
+{
 
     public function create(BuyerCreateUpdateRequestInput $request): BuyerRequestOutput
     {
@@ -28,8 +29,8 @@ class BuyerCreateUserCase extends MainUserCase {
 
         $buyerEntity = new Buyer($params);
         
-        if ($buyerEntity->validate()) {            
+        if ($buyerEntity->validate()) {
             return $this->repository->create($request);
-        }        
-    }    
+        }
+    }
 }

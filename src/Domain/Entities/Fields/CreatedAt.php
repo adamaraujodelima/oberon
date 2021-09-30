@@ -5,7 +5,8 @@ namespace Oberon\Domain\Entities\Fields;
 use DateTime;
 use UnexpectedValueException;
 
-class CreatedAt {
+class CreatedAt
+{
     
     private DateTime $value;
 

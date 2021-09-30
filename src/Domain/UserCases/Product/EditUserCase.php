@@ -9,7 +9,6 @@ class EditUserCase implements EditUserCaseInterface
 
     public function main(int $id, array $params)
     {
-        
     }
 
     public function validate(array $params)

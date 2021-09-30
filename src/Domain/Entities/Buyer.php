@@ -13,7 +13,8 @@ use Oberon\Domain\Entities\Fields\PrimaryKey;
 use Oberon\Domain\Entities\Fields\UpdatedAt;
 use UnexpectedValueException;
 
-class Buyer {
+final class Buyer
+{
     
     private PrimaryKey $id;
     private Name $name;
@@ -30,11 +31,11 @@ class Buyer {
 
     public function validate(): bool
     {
-        if (!is_array($this->attributes)){
+        if (!is_array($this->attributes)) {
             throw new UnexpectedValueException("The variable attributes must be an array", 1);
         }
 
-        if (empty($this->attributes)){
+        if (empty($this->attributes)) {
             throw new UnexpectedValueException("The variable attributes cannot be empty", 1);
         }
 
