@@ -23,7 +23,7 @@ class UpdatedAt
         }
 
         $now = new DateTime();
-        $now->modify('- 1 minute'); // The runtime code happen with diference in execution from construct the another classes
+        $now->modify('- 1 minute');
         if ($this->value < $now) {
             throw new UnexpectedValueException("The updatedAt field cannot be in the past", 1);
         }
