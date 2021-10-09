@@ -41,14 +41,14 @@ services:
             - api
 
     api:
-        build: docker/php-fpm
+        build: api
         working_dir: /application
         container_name: api
         depends_on: 
             - postgres
         volumes:
-            - './api:/application'
-            - './docker/php-fpm/php-ini-overrides.ini:/etc/php/8.0/fpm/conf.d/99-overrides.ini'
+            - './api:/oberon/api'
+            - './api/php-ini-overrides.ini:/etc/php/8.0/fpm/conf.d/99-overrides.ini'
         environment: 
             - DB_CONNECTION=pgsql
             - DB_HOST=postgres-database

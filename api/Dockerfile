@@ -1,5 +1,5 @@
 FROM phpdockerio/php80-fpm:latest
-WORKDIR "/application"
+WORKDIR "/oberon/api"
 
 RUN apt-get update; \
     apt-get -y --no-install-recommends install \
@@ -22,3 +22,5 @@ RUN apt-get update; \
         php8.0-redis; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+
+COPY php-ini-overrides.ini /etc/php/8.0/fpm/conf.d/99-overrides.ini
