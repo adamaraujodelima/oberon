@@ -57,11 +57,14 @@ services:
             - DB_USERNAME=admin
             - DB_PASSWORD=admin
     admin:
-        image: node:latest
-        working_dir: /application
+        image: 'node:latest'
+        working_dir: /oberon/admin
         container_name: admin
+        command: sh -c "yarn dev"
         depends_on: 
             - api
         volumes:
-            - './admin:/application'
+            - './admin:/oberon/admin'
+        ports:
+            - '8080:8080'
             
