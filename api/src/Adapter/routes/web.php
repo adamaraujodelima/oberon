@@ -19,5 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/api/buyer/create', [CreateController::class, 'execute']);
-Route::get('/api/buyer/pagination', [PaginationController::class, 'execute']);
+Route::get('/api/buyer/create', [CreateController::class, 'main']);
+Route::get('/api/buyer/edit', [CreateController::class, 'main']);
+Route::get('/api/buyer/pagination', [PaginationController::class, 'main']);

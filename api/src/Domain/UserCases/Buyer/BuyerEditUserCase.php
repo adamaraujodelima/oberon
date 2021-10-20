@@ -17,6 +17,7 @@ final class BuyerEditUserCase extends MainUserCase
     {
         
         $buyer = $this->repository->find($request->getId());
+        
         if (!$buyer) {
             throw new UnexpectedValueException("The Buyer entity was not found!", 1);
         }
@@ -32,8 +33,6 @@ final class BuyerEditUserCase extends MainUserCase
 
         $buyerEntity = new Buyer($params);
         
-        if ($buyerEntity->validate()) {
-            return $this->repository->update($request);
-        }
+        return $this->repository->update($request);        
     }
 }
