@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Oberon Admin
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
@@ -28,10 +28,10 @@
         <q-item-label
           header
         >
-          Essential Links
+          Menu
         </q-item-label>
 
-        <EssentialLink
+        <MenuItems
           v-for="link in essentialLinks"
           :key="link.title"
           v-bind="link"
@@ -46,50 +46,20 @@
 </template>
 
 <script lang="ts">
-import EssentialLink from 'components/EssentialLink.vue';
+import MenuItems from 'components/MenuItems.vue';
 
 const linksList = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev',
+    title: 'Buyers',
+    caption: 'Buyers list',
+    icon: 'account_circle',
+    link: 'buyers',
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework',
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev',
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev',
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev',
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev',
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev',
+    title: 'Sellers',
+    caption: 'Sellers list',
+    icon: 'account_circle',
+    link: 'sellers',
   },
 ];
 
@@ -99,7 +69,7 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink,
+    MenuItems,
   },
 
   setup() {
