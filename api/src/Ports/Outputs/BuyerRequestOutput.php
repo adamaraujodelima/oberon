@@ -53,4 +53,16 @@ final class BuyerRequestOutput
     {
         return $this->updatedAt;
     }
+
+    public function toArray()
+    {
+        return [
+            'id' =>  $this->getId(),
+            'name' =>  $this->getName(),
+            'document' => $this->getDocument(),
+            'active' => $this->getActive(),
+            'createdAt' => $this->getCreatedAt(),
+            'updatedAt' => $this->getUpdatedAt(),
+        ];
+    }
 }

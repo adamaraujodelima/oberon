@@ -26,11 +26,7 @@ final class BuyerCreateUserCase extends MainUserCase
             'createdAt' => $dateNow,
             'updatedAt' => $dateNow,
         );
-
-        $buyerEntity = new Buyer($params);
-        
-        if ($buyerEntity->validate()) {
-            return $this->repository->create($request);
-        }
+        $buyerEntity = new Buyer($params);        
+        return $this->repository->create($request);
     }
 }

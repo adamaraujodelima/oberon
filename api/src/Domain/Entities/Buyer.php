@@ -26,25 +26,26 @@ final class Buyer
 
     public function __construct(Array $attributes = [])
     {
+        $this->validate($attributes);
         $this->attributes = $attributes;
     }
 
-    public function validate(): bool
+    private function validate($attributes): bool
     {
-        if (!is_array($this->attributes)) {
+        if (!is_array($attributes)) {
             throw new UnexpectedValueException("The variable attributes must be an array", 1);
         }
 
-        if (empty($this->attributes)) {
+        if (empty($attributes)) {
             throw new UnexpectedValueException("The variable attributes cannot be empty", 1);
         }
 
-        $this->id = new PrimaryKey($this->attributes['id'] ?? 0);
-        $this->name = new Name($this->attributes['name'] ?? null);
-        $this->document = new Document($this->attributes['document'] ?? null);
-        $this->active = new Active($this->attributes['active'] ?? false);
-        $this->createdAt = new CreatedAt($this->attributes['createdAt'] ?? new DateTime());
-        $this->updatedAt = new UpdatedAt($this->attributes['updatedAt'] ?? new DateTime());
+        $this->id = new PrimaryKey($attributes['id'] ?? 0);
+        $this->name = new Name($attributes['name'] ?? null);
+        $this->document = new Document($attributes['document'] ?? null);
+        $this->active = new Active($attributes['active'] ?? false);
+        $this->createdAt = new CreatedAt($attributes['createdAt'] ?? new DateTime());
+        $this->updatedAt = new UpdatedAt($attributes['updatedAt'] ?? new DateTime());
 
         return true;
     }
