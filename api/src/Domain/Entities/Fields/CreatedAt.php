@@ -12,19 +12,19 @@ class CreatedAt
 
     public function __construct(DateTime $value)
     {
+        $this->validate($value);
         $this->value = $value;
-        $this->validate();
     }
 
-    protected function validate()
+    private function validate($value)
     {
-        if (empty($this->value)) {
+        if (empty($value)) {
             throw new UnexpectedValueException("The createdAt field cannot be empty", 1);
         }
 
         $now = new DateTime();
         $now->modify('- 1 minute');
-        if ($this->value < $now) {
+        if ($value < $now) {
             throw new UnexpectedValueException("The createdAt field cannot be in the past", 1);
         }
             
