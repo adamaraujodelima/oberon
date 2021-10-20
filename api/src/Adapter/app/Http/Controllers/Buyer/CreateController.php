@@ -20,7 +20,7 @@ class CreateController extends BaseController
         $this->repository = new BuyerRepository();
     }
 
-    public function execute(Request $request): JsonResponse
+    public function main(Request $request): JsonResponse
     {
         $date = new DateTime();
         $userCase = new BuyerCreateUserCase($this->repository);

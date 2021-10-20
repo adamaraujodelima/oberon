@@ -19,7 +19,7 @@ class PaginationController extends BaseController
         $this->repository = new BuyerRepository();
     }
 
-    public function execute(Request $request): JsonResponse
+    public function main(Request $request): JsonResponse
     {
         $userCasePagination = new BuyerPaginationUserCase($this->repository);
         $paginationRequest = new PaginationRequestInput(
