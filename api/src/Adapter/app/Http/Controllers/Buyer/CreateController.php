@@ -13,25 +13,22 @@ use Oberon\Ports\RepositoryInterface;
 
 class CreateController extends BaseController
 {
-    private RepositoryInterface $repository;
+    private BuyerCreateUserCase $userCase;
 
     public function __construct()
     {
-        $this->repository = new BuyerRepository();
+        $this->userCase = new BuyerCreateUserCase(new BuyerRepository());
     }
 
     public function main(Request $request): JsonResponse
     {
         $date = new DateTime();
-        $userCase = new BuyerCreateUserCase($this->repository);
         $request = new BuyerCreateUpdateRequestInput(
             $request->get('name') ?? '',
             $request->get('document') ?? '',
             $request->get('active') ?? false,
         );
-
-        $buyer = $userCase->create($request);
-
+        $buyer = $this->userCase->create($request);
         return new JsonResponse($buyer->toArray());
     }
 }

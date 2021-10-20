@@ -12,7 +12,7 @@ use Oberon\Ports\RepositoryInterface;
 
 class EditController extends BaseController
 {
-    private RepositoryInterface $repository;
+    private BuyerEditUserCase $userCase;
 
     public function __construct()
     {
@@ -25,8 +25,8 @@ class EditController extends BaseController
             $request->get('name') ?? '',
             $request->get('document') ?? '',
             $request->get('active') ?? false,
+            $request->get('id') ?? 0,
         );
-
         dd($this->userCase->edit($request));
     }
 }
