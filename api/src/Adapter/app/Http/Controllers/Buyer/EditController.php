@@ -19,14 +19,15 @@ class EditController extends BaseController
         $this->userCase = new BuyerEditUserCase(new BuyerRepository());
     }
 
-    public function main(Request $request): JsonResponse
+    public function main(int $id = 0, Request $request): JsonResponse
     {
         $request = new BuyerCreateUpdateRequestInput(
-            $request->get('name') ?? '',
-            $request->get('document') ?? '',
+            $request->get('name') ?? 'Adam Araujo de Lima',
+            $request->get('document') ?? '465415646464654',
             $request->get('active') ?? false,
-            $request->get('id') ?? 0,
+            $id,
         );
+
         dd($this->userCase->edit($request));
     }
 }

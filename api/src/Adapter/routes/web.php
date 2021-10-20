@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Buyer\CreateController;
-use App\Http\Controllers\Buyer\PaginationController;
+use App\Http\Controllers\Buyer\CreateController as BuyerCreateController;
+use App\Http\Controllers\Buyer\EditController as BuyerEditController;
+use App\Http\Controllers\Buyer\PaginationController as BuyerPaginationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/api/buyer/create', [CreateController::class, 'main']);
-Route::get('/api/buyer/edit', [CreateController::class, 'main']);
-Route::get('/api/buyer/pagination', [PaginationController::class, 'main']);
+Route::get('/api/buyer/create', [BuyerCreateController::class, 'main']);
+Route::get('/api/buyer/edit/{id}', [BuyerEditController::class, 'main']);
+Route::get('/api/buyer/pagination', [BuyerPaginationController::class, 'main']);
