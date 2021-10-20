@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Buyer;
 
 use App\Repository\BuyerRepository;
 use DateTime;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Oberon\Domain\UserCases\Buyer\BuyerCreateUserCase;
@@ -19,15 +20,18 @@ class CreateController extends BaseController
         $this->repository = new BuyerRepository();
     }
 
-    public function execute(Request $request)
+    public function execute(Request $request): JsonResponse
     {
         $date = new DateTime();
         $userCase = new BuyerCreateUserCase($this->repository);
         $request = new BuyerCreateUpdateRequestInput(
-            $request->get('name') ?? 'Adam A. de Lima',
-            $request->get('document') ?? '14654564665464',
+            $request->get('name') ?? '',
+            $request->get('document') ?? '',
             $request->get('active') ?? false,
         );
-        dd($userCase->create($request));
+
+        $buyer = $userCase->create($request);
+
+        return new JsonResponse($buyer->toArray());
     }
 }

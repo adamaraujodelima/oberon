@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Buyer;
 
 use App\Repository\BuyerRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Oberon\Domain\UserCases\Buyer\BuyerPaginationUserCase;
@@ -18,7 +19,7 @@ class PaginationController extends BaseController
         $this->repository = new BuyerRepository();
     }
 
-    public function execute(Request $request)
+    public function execute(Request $request): JsonResponse
     {
         $userCasePagination = new BuyerPaginationUserCase($this->repository);
         $paginationRequest = new PaginationRequestInput(
@@ -27,6 +28,6 @@ class PaginationController extends BaseController
             $request->get('page') ?? 0,
             $request->get('criteria') ?? [],
         );
-        dd($userCasePagination->pagination($paginationRequest));
+        return new JsonResponse($userCasePagination->pagination($paginationRequest));
     }
 }
